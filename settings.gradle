@@ -1,0 +1,5 @@
+rootProject.name = 'url-collector'
+include 'url-collector-master'
+include 'url-collector-slave'
+include 'url-collector-common'
+

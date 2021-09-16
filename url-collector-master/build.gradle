@@ -1,0 +1,18 @@
+buildscript {
+    ext {
+        set('mongodb.version', '4.3.1')
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    implementation project(':url-collector-common')
+
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+
+    implementation group: 'com.google.guava', name: 'guava', version: '30.1.1-jre'
+
+    implementation group: 'org.mongodb', name: 'mongodb-driver-sync'
+    implementation group: 'com.github.bottomless-archive-project', name: 'common-crawl-client', version: 'd2e0d136c3'
+}
