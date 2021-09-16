@@ -28,7 +28,7 @@ public class UrlCollectorCommand implements CommandLineRunner {
     private final ResultValidator resultValidator;
     private final ResultUploader resultUploader;
     private final ParseTaskFactory parseTaskFactory;
-    private final ExecutorService executorService = Executors.newFixedThreadPool(16);
+    private final ExecutorService executorService = Executors.newFixedThreadPool(72);
 
     @Override
     public void run(String... args) throws Exception {
