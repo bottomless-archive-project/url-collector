@@ -4,6 +4,7 @@ import com.github.bottomlessarchive.urlcollector.parser.service.WarcParser;
 import com.github.bottomlessarchive.urlcollector.workunit.service.domain.WorkUnit;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,6 +18,7 @@ import java.util.Collections;
 import java.util.Set;
 
 @Slf4j
+@Service
 @RequiredArgsConstructor
 public class WorkUnitProcessor {
 
