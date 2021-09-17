@@ -40,9 +40,13 @@ public class ParseTask implements Callable<Set<String>> {
             httpClient.send(request, HttpResponse.BodyHandlers.ofFile(tempFilePath));
 
             try (final InputStream warcContent = Files.newInputStream(tempFilePath)) {
-                log.info("Finished downloading for {} locaton, starting to parse.", location);
+                log.info("Finished downloading for {} location, starting to parse.", location);
 
-                return warcParser.parseWarcFile(warcContent);
+                Set<String> result = warcParser.parseWarcFile(warcContent);
+
+                log.info("Finished parsing for {} location.", location);
+
+                return result;
             }
         } finally {
             log.info("Finished parsing, deleting temp file at {}.", tempFilePath);
