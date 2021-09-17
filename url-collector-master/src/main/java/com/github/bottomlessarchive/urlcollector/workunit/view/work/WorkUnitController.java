@@ -31,7 +31,7 @@ public class WorkUnitController {
 
         return StartWorkUnitResponse.builder()
                 .id(workUnit.getId().toString())
-                .locations(workUnit.getLocations())
+                .location(workUnit.getLocation())
                 .build();
     }
 

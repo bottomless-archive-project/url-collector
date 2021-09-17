@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -13,6 +12,6 @@ import java.util.UUID;
 public class WorkUnit {
 
     private final UUID id;
-    private final Set<String> locations;
+    private final String location;
     private final WorkUnitStatus status;
 }

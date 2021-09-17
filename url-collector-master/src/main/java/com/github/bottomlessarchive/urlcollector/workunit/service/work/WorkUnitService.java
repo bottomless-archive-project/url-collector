@@ -22,7 +22,7 @@ public class WorkUnitService {
                     WorkUnitDatabaseEntity workUnitDatabaseEntity = new WorkUnitDatabaseEntity();
 
                     workUnitDatabaseEntity.setId(workUnit.getId());
-                    workUnitDatabaseEntity.setLocations(workUnit.getLocations());
+                    workUnitDatabaseEntity.setLocation(workUnit.getLocation());
                     workUnitDatabaseEntity.setStatus(workUnit.getStatus().name());
 
                     return workUnitDatabaseEntity;
@@ -36,7 +36,7 @@ public class WorkUnitService {
         return workUnitRepository.startWorkUnit()
                 .map(workUnitDatabaseEntity -> WorkUnit.builder()
                         .id(workUnitDatabaseEntity.getId())
-                        .locations(workUnitDatabaseEntity.getLocations())
+                        .location(workUnitDatabaseEntity.getLocation())
                         .status(WorkUnitStatus.valueOf(workUnitDatabaseEntity.getStatus()))
                         .build()
                 );

@@ -39,7 +39,7 @@ public class WorkUnitClient {
 
         return WorkUnit.builder()
                 .id(UUID.fromString(workUnitResponse.getId()))
-                .locations(workUnitResponse.getLocations())
+                .location(workUnitResponse.getLocation())
                 .build();
     }
 
