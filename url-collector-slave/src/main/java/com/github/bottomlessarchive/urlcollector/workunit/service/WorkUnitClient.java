@@ -1,6 +1,6 @@
 package com.github.bottomlessarchive.urlcollector.workunit.service;
 
-import com.github.bottomlessarchive.urlcollector.configuration.MasterServerConfigurationProperties;
+import com.github.bottomlessarchive.urlcollector.workunit.configuration.MasterServerConfigurationProperties;
 import com.github.bottomlessarchive.urlcollector.http.JsonBodyHandler;
 import com.github.bottomlessarchive.urlcollector.workunit.service.domain.WorkUnit;
 import com.github.bottomlessarchive.urlcollector.workunit.view.response.FinishWorkUnitRequest;

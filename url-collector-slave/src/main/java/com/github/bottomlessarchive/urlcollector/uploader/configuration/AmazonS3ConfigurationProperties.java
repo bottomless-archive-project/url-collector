@@ -1,11 +1,11 @@
-package com.github.bottomlessarchive.urlcollector.configuration;
+package com.github.bottomlessarchive.urlcollector.uploader.configuration;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Data
 @ConfigurationProperties("aws")
-public class AwsS3ConfigurationProperties {
+public class AmazonS3ConfigurationProperties {
 
     private String region;
     private String bucketName;

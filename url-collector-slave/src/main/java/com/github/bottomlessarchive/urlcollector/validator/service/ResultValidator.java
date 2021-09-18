@@ -1,6 +1,6 @@
 package com.github.bottomlessarchive.urlcollector.validator.service;
 
-import com.github.bottomlessarchive.urlcollector.configuration.UrlConfigurationProperties;
+import com.github.bottomlessarchive.urlcollector.parser.configuration.UrlConfigurationProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

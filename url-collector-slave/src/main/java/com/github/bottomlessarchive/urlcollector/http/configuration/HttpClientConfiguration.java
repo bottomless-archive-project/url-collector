@@ -1,4 +1,4 @@
-package com.github.bottomlessarchive.urlcollector.configuration;
+package com.github.bottomlessarchive.urlcollector.http.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

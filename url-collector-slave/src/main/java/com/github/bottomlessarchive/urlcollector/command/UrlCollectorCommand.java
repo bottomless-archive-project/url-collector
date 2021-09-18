@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 import java.util.stream.Collectors;
 
@@ -25,23 +24,21 @@ public class UrlCollectorCommand implements CommandLineRunner {
     private final ResultValidator resultValidator;
     private final ResultUploader resultUploader;
     private final WorkUnitProcessor workUnitProcessor;
-
-    //TODO: Move this to config!
-    private final Semaphore rateLimitingSemaphore = new Semaphore(
-            Runtime.getRuntime().availableProcessors());
-    private final ExecutorService executorService = Executors.newFixedThreadPool(
-            Runtime.getRuntime().availableProcessors());
+    private final Semaphore commandRateLimitingSemaphore;
+    private final ExecutorService commandExecutorService;
 
     @Override
     public void run(String... args) throws Exception {
         while (true) {
+            commandRateLimitingSemaphore.acquire();
+
             log.info("Starting new work unit.");
 
             final WorkUnit workUnit = workUnitClient.startWorkUnit();
 
             log.info("Got work unit: {}.", workUnit);
 
-            executorService.execute(() -> {
+            commandExecutorService.execute(() -> {
                 final Set<String> result = workUnitProcessor.process(workUnit).stream()
                         .filter(resultValidator::validateResult)
                         .collect(Collectors.toSet());
@@ -54,10 +51,8 @@ public class UrlCollectorCommand implements CommandLineRunner {
 
                 workUnitClient.finishWorkUnit(workUnit);
 
-                rateLimitingSemaphore.release();
+                commandRateLimitingSemaphore.release();
             });
-
-            rateLimitingSemaphore.acquire();
         }
     }
 }

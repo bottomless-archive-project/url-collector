@@ -3,7 +3,7 @@ package com.github.bottomlessarchive.urlcollector.uploader;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.bottomlessarchive.urlcollector.configuration.AwsS3ConfigurationProperties;
+import com.github.bottomlessarchive.urlcollector.uploader.configuration.AmazonS3ConfigurationProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.compress.compressors.lzma.LZMACompressorOutputStream;
@@ -23,7 +23,7 @@ public class ResultUploader {
 
     private final AmazonS3 amazonS3;
     private final ObjectMapper objectMapper;
-    private final AwsS3ConfigurationProperties awsS3ConfigurationProperties;
+    private final AmazonS3ConfigurationProperties awsS3ConfigurationProperties;
 
     public void uploadResult(final String batchId, final Set<String> result) {
         final List<String> urls = asSortedList(result);
