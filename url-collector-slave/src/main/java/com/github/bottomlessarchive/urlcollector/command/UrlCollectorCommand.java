@@ -1,8 +1,8 @@
 package com.github.bottomlessarchive.urlcollector.command;
 
 import com.github.bottomlessarchive.urlcollector.task.service.WorkUnitProcessor;
-import com.github.bottomlessarchive.urlcollector.uploader.ResultUploader;
-import com.github.bottomlessarchive.urlcollector.validator.service.ResultValidator;
+import com.github.bottomlessarchive.urlcollector.uploader.UrlUploader;
+import com.github.bottomlessarchive.urlcollector.validator.service.UrlValidator;
 import com.github.bottomlessarchive.urlcollector.workunit.service.WorkUnitClient;
 import com.github.bottomlessarchive.urlcollector.workunit.service.domain.WorkUnit;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +21,8 @@ import java.util.stream.Collectors;
 public class UrlCollectorCommand implements CommandLineRunner {
 
     private final WorkUnitClient workUnitClient;
-    private final ResultValidator resultValidator;
-    private final ResultUploader resultUploader;
+    private final UrlValidator urlValidator;
+    private final UrlUploader urlUploader;
     private final WorkUnitProcessor workUnitProcessor;
     private final Semaphore commandRateLimitingSemaphore;
     private final ExecutorService commandExecutorService;
@@ -39,13 +39,13 @@ public class UrlCollectorCommand implements CommandLineRunner {
             log.info("Got work unit: {}.", workUnit);
 
             commandExecutorService.execute(() -> {
-                final Set<String> result = workUnitProcessor.process(workUnit).stream()
-                        .filter(resultValidator::validateResult)
+                final Set<String> resultUrls = workUnitProcessor.process(workUnit).stream()
+                        .filter(urlValidator::validateUrl)
                         .collect(Collectors.toSet());
 
                 log.info("Starting uploading for task: {}.", workUnit.getId());
 
-                resultUploader.uploadResult(workUnit.getId().toString(), result);
+                urlUploader.uploadUrls(workUnit.getId().toString(), resultUrls);
 
                 log.info("Finished uploading for task: {}, reporting as finished.", workUnit.getId());
 

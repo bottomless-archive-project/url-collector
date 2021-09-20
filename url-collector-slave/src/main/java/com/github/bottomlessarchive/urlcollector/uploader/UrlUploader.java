@@ -19,16 +19,17 @@ import java.util.Set;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ResultUploader {
+public class UrlUploader {
 
     private final AmazonS3 amazonS3;
     private final ObjectMapper objectMapper;
     private final AmazonS3ConfigurationProperties awsS3ConfigurationProperties;
 
-    public void uploadResult(final String batchId, final Set<String> result) {
+    public void uploadUrls(final String batchId, final Set<String> result) {
         final List<String> urls = asSortedList(result);
 
         try (final ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
+            //TODO: Move the serializer to an UrlSerialize class
             // Write the data to an LZMA stream (encoding it in the process).
             try (final LZMACompressorOutputStream lzmaStream = new LZMACompressorOutputStream(
                     new BufferedOutputStream(byteArrayOutputStream))) {

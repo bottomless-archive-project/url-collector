@@ -9,11 +9,11 @@ import java.net.URISyntaxException;
 
 @Service
 @RequiredArgsConstructor
-public class ResultValidator {
+public class UrlValidator {
 
     private final UrlConfigurationProperties urlConfigurationProperties;
 
-    public boolean validateResult(final String result) {
+    public boolean validateUrl(final String result) {
         if (result.isEmpty()) {
             return false;
         }
