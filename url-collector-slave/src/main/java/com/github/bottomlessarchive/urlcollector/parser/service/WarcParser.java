@@ -20,7 +20,8 @@ import java.util.stream.Stream;
 public class WarcParser {
 
     private final ParsingContextFactory parsingContextFactory;
-    private final SourceLocationParser sourceLocationParser;
+    private final UrlSanitizer urlSanitizer;
+    private final UrlParser urlParser;
 
     public Set<String> parseWarcFile(final InputStream warcContent) {
         try {
@@ -61,7 +62,8 @@ public class WarcParser {
             return Stream.of(warcRecord)
                     .filter(WarcRecord::isResponse)
                     .map(parsingContextFactory::buildParsingContext)
-                    .flatMap(sourceLocationParser::parseLocations)
+                    .flatMap(urlParser::parseLocations)
+                    .map(urlSanitizer::sanitize)
                     .collect(Collectors.toSet());
         } catch (final WarcParsingException e) {
             log.debug("Unable to parse warc file: " + e.getMessage());

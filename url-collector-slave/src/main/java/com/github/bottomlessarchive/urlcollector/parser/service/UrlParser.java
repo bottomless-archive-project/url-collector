@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 @Slf4j
 @Service
-public class SourceLocationParser {
+public class UrlParser {
 
     public Stream<String> parseLocations(final ParsingContext parsingContext) {
         return parseDocument(parsingContext.getBaseUrl(), parsingContext.getContent()).stream()

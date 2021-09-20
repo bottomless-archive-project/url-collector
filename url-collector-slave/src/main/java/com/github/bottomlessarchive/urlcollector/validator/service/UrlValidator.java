@@ -18,6 +18,10 @@ public class UrlValidator {
             return false;
         }
 
+        if (!result.startsWith("http://") && !result.startsWith("https://")) {
+            return false;
+        }
+
         try {
             final URI sourceLocation = new URI(result);
 
