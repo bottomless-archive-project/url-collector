@@ -36,6 +36,7 @@ public class WorkUnitRequestFactory {
                                 + masterServerConfigurationProperties.getPort() + "/work-unit/finish-work")
                 )
                 .header("Accept", "application/json")
+                .header("Content-Type", "application/json; charset=UTF-8")
                 .POST(JsonBodyHandler.jsonBodyPublisher(finishWorkUnitRequest))
                 .build();
     }
