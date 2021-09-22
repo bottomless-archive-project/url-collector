@@ -68,10 +68,16 @@ class WorkUnitRequestFactoryTest {
 
         assertThat(httpRequest.uri().toString())
                 .hasToString("http://example.com:2000/work-unit/finish-work");
+        assertThat(httpRequest.headers().map())
+                .hasSize(2);
         assertThat(httpRequest.headers().allValues("Accept").size())
                 .isEqualTo(1);
         assertThat(httpRequest.headers().allValues("Accept").get(0))
                 .isEqualTo("application/json");
+        assertThat(httpRequest.headers().allValues("Content-Type").size())
+                .isEqualTo(1);
+        assertThat(httpRequest.headers().allValues("Content-Type").get(0))
+                .isEqualTo("application/json; charset=UTF-8");
         assertThat(httpRequest.method())
                 .contains("POST");
 
