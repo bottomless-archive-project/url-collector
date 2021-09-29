@@ -30,7 +30,7 @@ public class UrlCollectorCommand implements CommandLineRunner {
     private final ExecutorService commandExecutorService;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(final String... args) throws Exception {
         while (true) {
             commandRateLimitingSemaphore.acquire();
 

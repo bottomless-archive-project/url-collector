@@ -1,17 +1,15 @@
 package com.github.bottomlessarchive.urlcollector.workunit.repository;
 
 import com.github.bottomlessarchive.urlcollector.workunit.repository.domain.WorkUnitDatabaseEntity;
-import com.github.bottomlessarchive.urlcollector.workunit.service.domain.WorkUnitStatus;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
-import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Updates.set;
 
 @Component
 @RequiredArgsConstructor
@@ -25,7 +23,7 @@ public class WorkUnitRepository {
 
     public Optional<WorkUnitDatabaseEntity> findById(final UUID documentId) {
         return Optional.ofNullable(
-                documentDatabaseEntityMongoCollection.find(eq("_id", documentId))
+                documentDatabaseEntityMongoCollection.find(Filters.eq("_id", documentId))
                         .first()
         );
     }
@@ -33,14 +31,14 @@ public class WorkUnitRepository {
     public Optional<WorkUnitDatabaseEntity> startWorkUnit() {
         return Optional.ofNullable(
                 documentDatabaseEntityMongoCollection.findOneAndUpdate(
-                        eq("status", WorkUnitStatus.CREATED.name()),
-                        set("status", WorkUnitStatus.UNDER_PROCESSING.name())
+                        Filters.eq("status", "CREATED"),
+                        Updates.set("status", "UNDER_PROCESSING")
                 )
         );
     }
 
     public void finishWorkUnit(final UUID documentId) {
-        documentDatabaseEntityMongoCollection.updateOne(eq("_id", documentId),
-                set("status", WorkUnitStatus.FINISHED.name()));
+        documentDatabaseEntityMongoCollection.updateOne(Filters.eq("_id", documentId),
+                Updates.set("status", "FINISHED"));
     }
 }

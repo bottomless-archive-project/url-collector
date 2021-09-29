@@ -1,0 +1,3 @@
+dependencies {
+    api project(':url-collector-library:url-collector-work-unit-repository')
+}

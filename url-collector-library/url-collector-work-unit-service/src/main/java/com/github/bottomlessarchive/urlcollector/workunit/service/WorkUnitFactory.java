@@ -1,4 +1,4 @@
-package com.github.bottomlessarchive.urlcollector.workunit.service.work;
+package com.github.bottomlessarchive.urlcollector.workunit.service;
 
 import com.github.bottomlessarchive.urlcollector.workunit.repository.WorkUnitRepository;
 import com.github.bottomlessarchive.urlcollector.workunit.service.domain.WorkUnit;

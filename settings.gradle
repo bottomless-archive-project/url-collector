@@ -3,3 +3,10 @@ include 'url-collector-master'
 include 'url-collector-slave'
 include 'url-collector-common'
 
+include 'url-collector-library'
+include 'url-collector-library:url-collector-work-unit-repository'
+include 'url-collector-library:url-collector-work-unit-service'
+
+include 'url-collector-application'
+include 'url-collector-application:url-collector-merger'
+

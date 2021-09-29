@@ -2,8 +2,8 @@ package com.github.bottomlessarchive.urlcollector.workunit.view.work;
 
 import com.github.bottomlessarchive.urlcollector.workunit.service.domain.WorkUnit;
 import com.github.bottomlessarchive.urlcollector.workunit.service.domain.WorkUnitStatus;
-import com.github.bottomlessarchive.urlcollector.workunit.service.work.WorkUnitFactory;
-import com.github.bottomlessarchive.urlcollector.workunit.service.work.WorkUnitService;
+import com.github.bottomlessarchive.urlcollector.workunit.service.WorkUnitFactory;
+import com.github.bottomlessarchive.urlcollector.workunit.service.WorkUnitService;
 import com.github.bottomlessarchive.urlcollector.workunit.view.response.FinishWorkUnitRequest;
 import com.github.bottomlessarchive.urlcollector.workunit.view.response.StartWorkUnitResponse;
 import lombok.RequiredArgsConstructor;

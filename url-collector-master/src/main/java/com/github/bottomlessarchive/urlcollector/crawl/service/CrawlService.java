@@ -3,7 +3,7 @@ package com.github.bottomlessarchive.urlcollector.crawl.service;
 import com.github.bottomlessarchive.commoncrawl.WarcLocationFactory;
 import com.github.bottomlessarchive.urlcollector.workunit.service.domain.WorkUnit;
 import com.github.bottomlessarchive.urlcollector.workunit.service.domain.WorkUnitStatus;
-import com.github.bottomlessarchive.urlcollector.workunit.service.work.WorkUnitService;
+import com.github.bottomlessarchive.urlcollector.workunit.service.WorkUnitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -2,7 +2,6 @@ package com.github.bottomlessarchive.urlcollector.workunit.service;
 
 import com.github.bottomlessarchive.urlcollector.workunit.configuration.MasterServerConfigurationProperties;
 import com.github.bottomlessarchive.urlcollector.workunit.service.domain.WorkUnit;
-import com.github.bottomlessarchive.urlcollector.workunit.service.domain.WorkUnitStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -61,7 +60,6 @@ class WorkUnitRequestFactoryTest {
         final WorkUnit workUnit = WorkUnit.builder()
                 .id(UUID.fromString("1b39b03e-8583-412b-b26e-fbbea979fc3d"))
                 .location("http://example.com/test/test.warc")
-                .status(WorkUnitStatus.UNDER_PROCESSING)
                 .build();
 
         final HttpRequest httpRequest = workUnitRequestFactory.newFinishWorkUnitRequest(workUnit);
