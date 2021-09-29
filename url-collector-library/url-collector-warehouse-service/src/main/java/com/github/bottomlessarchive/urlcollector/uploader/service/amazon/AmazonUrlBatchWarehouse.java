@@ -4,7 +4,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.bottomlessarchive.urlcollector.uploader.service.UrlBatchUploader;
+import com.github.bottomlessarchive.urlcollector.uploader.service.UrlBatchWarehouse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.compress.compressors.lzma.LZMACompressorInputStream;
 import org.apache.commons.compress.compressors.lzma.LZMACompressorOutputStream;
@@ -13,13 +13,13 @@ import java.io.*;
 import java.util.*;
 
 @Slf4j
-public class AmazonUrlBatchUploader implements UrlBatchUploader {
+public class AmazonUrlBatchWarehouse implements UrlBatchWarehouse {
 
     private final String bucketName;
     private final AmazonS3 amazonS3;
     private final ObjectMapper objectMapper;
 
-    public AmazonUrlBatchUploader(final String bucketName, final AmazonS3 amazonS3, final ObjectMapper objectMapper) {
+    public AmazonUrlBatchWarehouse(final String bucketName, final AmazonS3 amazonS3, final ObjectMapper objectMapper) {
         this.bucketName = bucketName;
         this.amazonS3 = amazonS3;
         this.objectMapper = objectMapper;
