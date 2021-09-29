@@ -1,10 +1,10 @@
 rootProject.name = 'url-collector'
-include 'url-collector-common'
 
 include 'url-collector-library'
 include 'url-collector-library:url-collector-warehouse-service'
 include 'url-collector-library:url-collector-work-unit-repository'
 include 'url-collector-library:url-collector-work-unit-service'
+include 'url-collector-library:url-collector-work-unit-view'
 
 include 'url-collector-application'
 include 'url-collector-application:url-collector-slave-application'
