@@ -14,6 +14,9 @@ public class JsonBodyHandler {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
+    private JsonBodyHandler() {
+    }
+
     public static <W> HttpResponse.BodyHandler<Supplier<W>> jsonBodyHandler(final Class<W> wClass) {
         return responseInfo -> asJSON(wClass);
     }

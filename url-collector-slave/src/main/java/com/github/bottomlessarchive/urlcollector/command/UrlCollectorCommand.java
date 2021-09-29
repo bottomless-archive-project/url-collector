@@ -10,9 +10,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -34,7 +36,17 @@ public class UrlCollectorCommand implements CommandLineRunner {
 
             log.info("Starting new work unit.");
 
-            final WorkUnit workUnit = workUnitClient.startWorkUnit();
+            final Optional<WorkUnit> optionalWorkUnit = workUnitClient.startWorkUnit();
+
+            if (optionalWorkUnit.isEmpty()) {
+                TimeUnit.MINUTES.sleep(10);
+
+                log.info("Got no work unit! Waiting a minute.");
+
+                continue;
+            }
+
+            final WorkUnit workUnit = optionalWorkUnit.get();
 
             log.info("Got work unit: {}.", workUnit);
 

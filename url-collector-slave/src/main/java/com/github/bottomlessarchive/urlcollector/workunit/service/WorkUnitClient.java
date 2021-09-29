@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 @Service
 @RequiredArgsConstructor
@@ -20,18 +22,24 @@ public class WorkUnitClient {
     private final WorkUnitRequestFactory workUnitRequestFactory;
 
     @SneakyThrows
-    public WorkUnit startWorkUnit() {
+    public Optional<WorkUnit> startWorkUnit() {
         final HttpRequest request = workUnitRequestFactory.newStartWorkUnitRequest();
 
-        final StartWorkUnitResponse workUnitResponse = httpClient.send(request,
-                        JsonBodyHandler.jsonBodyHandler(StartWorkUnitResponse.class))
-                .body()
-                .get();
+        final HttpResponse<Supplier<StartWorkUnitResponse>> httpResponse = httpClient.send(request,
+                JsonBodyHandler.jsonBodyHandler(StartWorkUnitResponse.class));
 
-        return WorkUnit.builder()
-                .id(UUID.fromString(workUnitResponse.getId()))
-                .location(workUnitResponse.getLocation())
-                .build();
+        if (httpResponse.statusCode() == 204) {
+            return Optional.empty();
+        }
+
+        final StartWorkUnitResponse startWorkUnitResponse = httpResponse.body().get();
+
+        return Optional.of(
+                WorkUnit.builder()
+                        .id(UUID.fromString(startWorkUnitResponse.getId()))
+                        .location(startWorkUnitResponse.getLocation())
+                        .build()
+        );
     }
 
     @SneakyThrows

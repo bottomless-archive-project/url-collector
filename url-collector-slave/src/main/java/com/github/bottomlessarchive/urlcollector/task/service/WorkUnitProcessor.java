@@ -1,6 +1,7 @@
 package com.github.bottomlessarchive.urlcollector.task.service;
 
 import com.github.bottomlessarchive.urlcollector.parser.service.WarcParser;
+import com.github.bottomlessarchive.urlcollector.task.domain.ProcessingException;
 import com.github.bottomlessarchive.urlcollector.workunit.service.domain.WorkUnit;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -46,9 +47,9 @@ public class WorkUnitProcessor {
                 return warcParser.parseWarcFile(warcContent);
             }
         } catch (IOException | InterruptedException e) {
-            log.error("Failed to process work unit: " + workUnit.getId() + "!");
+            log.error("Failed to process work unit: " + workUnit.getId() + "!", e);
 
-            return Collections.emptySet();
+            throw new ProcessingException("Unable to parse the warc files! Shutting down!", e);
         } finally {
             log.info("Finished parsing location: {}, deleting temp file at {}.",
                     workUnit.getLocation(), tempFilePath);
