@@ -5,6 +5,9 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.bottomlessarchive.urlcollector.uploader.service.UrlBatchUploader;
+import com.github.bottomlessarchive.urlcollector.uploader.service.amazon.AmazonUrlBatchUploader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +17,11 @@ import org.springframework.context.annotation.Configuration;
 public class AmazonS3Configuration {
 
     private final AmazonS3ConfigurationProperties awsS3ConfigurationProperties;
+
+    @Bean
+    public UrlBatchUploader uploaderBatchUploader(final AmazonS3 amazonS3, final ObjectMapper objectMapper) {
+        return new AmazonUrlBatchUploader(awsS3ConfigurationProperties.getBucketName(), amazonS3, objectMapper);
+    }
 
     @Bean
     public AmazonS3 amazonS3Client() {

@@ -4,6 +4,7 @@ include 'url-collector-slave'
 include 'url-collector-common'
 
 include 'url-collector-library'
+include 'url-collector-library:url-collector-uploader-service'
 include 'url-collector-library:url-collector-work-unit-repository'
 include 'url-collector-library:url-collector-work-unit-service'
 
