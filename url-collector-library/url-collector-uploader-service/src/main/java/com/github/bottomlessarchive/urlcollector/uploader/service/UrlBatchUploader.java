@@ -5,4 +5,6 @@ import java.util.Set;
 public interface UrlBatchUploader {
 
     void uploadUrls(String batchId, Set<String> result);
+
+    Set<String> downloadUrls(String batchId);
 }
