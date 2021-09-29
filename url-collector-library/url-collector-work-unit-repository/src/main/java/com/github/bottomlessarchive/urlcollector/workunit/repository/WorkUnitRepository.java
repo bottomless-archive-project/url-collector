@@ -7,9 +7,7 @@ import com.mongodb.client.model.Updates;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Component
 @RequiredArgsConstructor
@@ -26,6 +24,18 @@ public class WorkUnitRepository {
                 documentDatabaseEntityMongoCollection.find(Filters.eq("_id", documentId))
                         .first()
         );
+    }
+
+    public List<WorkUnitDatabaseEntity> findAll() {
+        final Iterable<WorkUnitDatabaseEntity> iterator = documentDatabaseEntityMongoCollection.find();
+
+        final List<WorkUnitDatabaseEntity> workUnitDatabaseEntities = new LinkedList<>();
+
+        for (WorkUnitDatabaseEntity workUnitDatabaseEntity : iterator) {
+            workUnitDatabaseEntities.add(workUnitDatabaseEntity);
+        }
+
+        return workUnitDatabaseEntities;
     }
 
     public Optional<WorkUnitDatabaseEntity> startWorkUnit() {

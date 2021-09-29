@@ -1,10 +1,11 @@
 package com.github.bottomlessarchive.urlcollector.uploader.service;
 
 import java.util.Set;
+import java.util.UUID;
 
 public interface UrlBatchWarehouse {
 
-    void uploadUrls(String batchId, Set<String> result);
+    void uploadUrls(UUID batchId, Set<String> result);
 
-    Set<String> downloadUrls(String batchId);
+    Set<String> downloadUrls(UUID batchId);
 }

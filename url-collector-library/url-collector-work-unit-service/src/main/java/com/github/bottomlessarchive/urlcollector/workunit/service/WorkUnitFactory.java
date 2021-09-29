@@ -6,8 +6,10 @@ import com.github.bottomlessarchive.urlcollector.workunit.service.domain.WorkUni
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -23,5 +25,16 @@ public class WorkUnitFactory {
                         .status(WorkUnitStatus.valueOf(workUnitDatabaseEntity.getStatus()))
                         .build()
                 );
+    }
+
+    public List<WorkUnit> getWorkUnits() {
+        return workUnitRepository.findAll().stream()
+                .map(workUnitDatabaseEntity -> WorkUnit.builder()
+                        .id(workUnitDatabaseEntity.getId())
+                        .location(workUnitDatabaseEntity.getLocation())
+                        .status(WorkUnitStatus.valueOf(workUnitDatabaseEntity.getStatus()))
+                        .build()
+                )
+                .collect(Collectors.toList());
     }
 }

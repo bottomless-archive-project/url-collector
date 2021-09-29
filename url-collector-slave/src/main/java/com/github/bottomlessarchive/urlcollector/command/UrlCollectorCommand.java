@@ -57,7 +57,7 @@ public class UrlCollectorCommand implements CommandLineRunner {
 
                 log.info("Starting uploading for task: {}.", workUnit.getId());
 
-                urlBatchWarehouse.uploadUrls(workUnit.getId().toString(), resultUrls);
+                urlBatchWarehouse.uploadUrls(workUnit.getId(), resultUrls);
 
                 log.info("Finished uploading for task: {}, reporting as finished.", workUnit.getId());
 

@@ -14,9 +14,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @RequiredArgsConstructor
-public class AmazonS3Configuration {
+public class AmazonUrlBatchWarehouseConfiguration {
 
-    private final AmazonS3ConfigurationProperties awsS3ConfigurationProperties;
+    private final AmazonConfigurationProperties awsS3ConfigurationProperties;
 
     @Bean
     public UrlBatchWarehouse uploaderBatchUploader(final AmazonS3 amazonS3, final ObjectMapper objectMapper) {

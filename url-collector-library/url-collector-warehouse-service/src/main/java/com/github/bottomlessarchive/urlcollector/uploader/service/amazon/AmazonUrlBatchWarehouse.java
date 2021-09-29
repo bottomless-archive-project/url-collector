@@ -26,7 +26,7 @@ public class AmazonUrlBatchWarehouse implements UrlBatchWarehouse {
     }
 
     @Override
-    public void uploadUrls(final String batchId, final Set<String> result) {
+    public void uploadUrls(final UUID batchId, final Set<String> result) {
         // Sorting the list, to optimize the compression
         final List<String> urls = asSortedList(result);
 
@@ -46,7 +46,7 @@ public class AmazonUrlBatchWarehouse implements UrlBatchWarehouse {
     }
 
     @Override
-    public Set<String> downloadUrls(String batchId) {
+    public Set<String> downloadUrls(final UUID batchId) {
         try {
             final InputStream contentInputStream = new LZMACompressorInputStream(readFile(
                     "crawled-data/dataset-" + batchId + ".ubds"));
