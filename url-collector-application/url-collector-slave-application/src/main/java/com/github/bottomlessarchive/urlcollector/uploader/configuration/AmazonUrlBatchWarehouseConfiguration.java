@@ -5,7 +5,7 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.bottomlessarchive.urlcollector.serializer.service.UrlBatchSerializer;
 import com.github.bottomlessarchive.urlcollector.uploader.service.UrlBatchWarehouse;
 import com.github.bottomlessarchive.urlcollector.uploader.service.amazon.AmazonUrlBatchWarehouse;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +19,9 @@ public class AmazonUrlBatchWarehouseConfiguration {
     private final AmazonConfigurationProperties awsS3ConfigurationProperties;
 
     @Bean
-    public UrlBatchWarehouse uploaderBatchUploader(final AmazonS3 amazonS3, final ObjectMapper objectMapper) {
-        return new AmazonUrlBatchWarehouse(awsS3ConfigurationProperties.getBucketName(), amazonS3, objectMapper);
+    public UrlBatchWarehouse uploaderBatchUploader(final AmazonS3 amazonS3,
+                                                   final UrlBatchSerializer urlBatchSerializer) {
+        return new AmazonUrlBatchWarehouse(awsS3ConfigurationProperties.getBucketName(), amazonS3, urlBatchSerializer);
     }
 
     @Bean
