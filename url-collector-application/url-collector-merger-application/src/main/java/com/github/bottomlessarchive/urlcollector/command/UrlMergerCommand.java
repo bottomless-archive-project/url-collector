@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -44,7 +45,10 @@ public class UrlMergerCommand implements CommandLineRunner {
 
         log.info("Writing {} urls to file!", uniqueUrls.size());
 
-        try (BufferedWriter out = new BufferedWriter(new FileWriter(pathConfigurationProperties.getPath()))) {
+        final Path pathToResult = Path.of(pathConfigurationProperties.getPath())
+                .resolve("result.ubds");
+
+        try (BufferedWriter out = new BufferedWriter(new FileWriter(pathToResult.toFile()))) {
             for (String value : uniqueUrls) {
                 out.write(value);
                 out.newLine();
