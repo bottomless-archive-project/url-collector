@@ -1,4 +1,4 @@
-package com.github.bottomlessarchive.urlcollector.uploader.configuration;
+package com.github.bottomlessarchive.urlcollector.configuration.amazon;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;

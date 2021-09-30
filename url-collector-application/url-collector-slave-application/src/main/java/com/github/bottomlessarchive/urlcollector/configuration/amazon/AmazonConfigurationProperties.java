@@ -1,4 +1,4 @@
-package com.github.bottomlessarchive.urlcollector.uploader.configuration;
+package com.github.bottomlessarchive.urlcollector.configuration.amazon;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
