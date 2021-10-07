@@ -59,11 +59,20 @@ After the download is complete run the application via the following command:
 java -jar url-collector-master-application-{release-number}.jar ...
 ```
 
-In the place of the ... you should write the various parameters.
+In the place of the ... you should write the various parameters with two dashes in the beginning and an equal sign
+between the parameter's name and it's value. For example:
+
+```bash
+java -jar url-collector-master-application-{release-number}.jar --example.parameter=value
+```
 
 #### Parameters
 
-...
+| Name          | Description |
+| ------------- | ----------- |
+| database.host | Title       |
+| database.port | Text        |
+| database.uri  | Text        |
 
 ### Running the Slave Application
 
@@ -79,11 +88,25 @@ java -jar url-collector-slave-application-{release-number}.jar ...
 
 You can start the slave application on more than one machines if necessary, to improve the crawling speed.
 
-In the place of the ... you should write the various parameters.
+In the place of the ... you should write the various parameters with two dashes in the beginning and an equal sign
+between the parameter's name and it's value. For example:
+
+```bash
+java -jar url-collector-slave-application-{release-number}.jar --example.parameter=value
+```
 
 #### Parameters
 
-...
+| Name                         | Description |
+| ---------------------------- | ----------- |
+| execution.parallelism-target | Title       |
+| aws.region                   | Text        |
+| aws.bucket-name              | Text        |
+| aws.access-key               | Text        |
+| aws.secret-key               | Text        |
+| validation.types             | Text        |
+| master.host                  | Text        |
+| master.port                  | Text        |
 
 ### Starting a crawl
 
@@ -103,4 +126,34 @@ curl --location --request POST 'http://185.191.228.214:8081/crawl' \
 
 Once it is done, the Slave application should automatically pick up the new work units in a matter of minutes.
 
-### Merging the result
+### Starting the Merger Application
+
+You can download the Merger Application from
+our [release page](https://github.com/bottomless-archive-project/url-collector/releases). Please take care to choose a
+non "pre-release" version!
+
+After the download is complete run the application via the following command:
+
+```bash
+java -jar url-collector-merger-application-{release-number}.jar ...
+```
+
+In the place of the ... you should write the various parameters with two dashes in the beginning and an equal sign
+between the parameter's name and it's value. For example:
+
+```bash
+java -jar url-collector-merger-application-{release-number}.jar --example.parameter=value
+```
+
+#### Parameters
+
+| Name            | Description |
+| --------------- | ----------- |
+| database.host   | Title       |
+| database.port   | Text        |
+| database.uri    | Text        |
+| aws.region      | Text        |
+| aws.bucket-name | Text        |
+| aws.access-key  | Text        |
+| aws.secret-key  | Text        |
+| result.path     | Text        |
