@@ -6,9 +6,9 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
 @SpringBootApplication
 @ConfigurationPropertiesScan
-public class UrlCollectorSlaveApplication {
+public class URLCollectorMergerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(UrlCollectorSlaveApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(URLCollectorMergerApplication.class, args);
+    }
 }

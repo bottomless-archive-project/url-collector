@@ -1,6 +1,6 @@
 package com.github.bottomlessarchive.urlcollector.validator.service;
 
-import com.github.bottomlessarchive.urlcollector.parser.configuration.UrlConfigurationProperties;
+import com.github.bottomlessarchive.urlcollector.validator.configuration.ValidationConfigurationProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +9,9 @@ import java.net.URISyntaxException;
 
 @Service
 @RequiredArgsConstructor
-public class UrlValidator {
+public class URLValidator {
 
-    private final UrlConfigurationProperties urlConfigurationProperties;
+    private final ValidationConfigurationProperties validationConfigurationProperties;
 
     public boolean validateUrl(final String result) {
         if (result.isEmpty()) {
@@ -38,7 +38,7 @@ public class UrlValidator {
             return false;
         }
 
-        return urlConfigurationProperties.getTypes().stream()
+        return validationConfigurationProperties.getTypes().stream()
                 .anyMatch(type -> path.endsWith("." + type));
     }
 }

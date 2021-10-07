@@ -20,7 +20,7 @@ import java.util.Set;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class UrlMergerCommand implements CommandLineRunner {
+public class URLMergerCommand implements CommandLineRunner {
 
     private final WorkUnitFactory workUnitFactory;
     private final UrlBatchWarehouse urlBatchWarehouse;

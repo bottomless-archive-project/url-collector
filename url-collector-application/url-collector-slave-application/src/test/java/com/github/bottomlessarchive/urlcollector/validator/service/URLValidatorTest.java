@@ -1,6 +1,6 @@
 package com.github.bottomlessarchive.urlcollector.validator.service;
 
-import com.github.bottomlessarchive.urlcollector.parser.configuration.UrlConfigurationProperties;
+import com.github.bottomlessarchive.urlcollector.validator.configuration.ValidationConfigurationProperties;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -13,13 +13,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class UrlValidatorTest {
+class URLValidatorTest {
 
     @Mock
-    private UrlConfigurationProperties urlConfigurationProperties;
+    private ValidationConfigurationProperties validationConfigurationProperties;
 
     @InjectMocks
-    private UrlValidator urlValidator;
+    private URLValidator urlValidator;
 
     @Test
     void validatingEmptyStringShouldReturnFalse() {
@@ -37,7 +37,7 @@ class UrlValidatorTest {
 
     @Test
     void validatingGoodURLThatHasBadExtensionShouldReturnFalse() {
-        when(urlConfigurationProperties.getTypes())
+        when(validationConfigurationProperties.getTypes())
                 .thenReturn(List.of("pdf"));
 
         boolean result = urlValidator.validateUrl("http://example.com/something.abc");
@@ -54,7 +54,7 @@ class UrlValidatorTest {
 
     @Test
     void validatingGoodURLThatStartWithHttpAndHasGoodExtensionShouldReturnTrue() {
-        when(urlConfigurationProperties.getTypes())
+        when(validationConfigurationProperties.getTypes())
                 .thenReturn(List.of("pdf"));
 
         boolean result = urlValidator.validateUrl("http://example.com/something.pdf");
@@ -64,7 +64,7 @@ class UrlValidatorTest {
 
     @Test
     void validatingGoodURLThatStartWithHttpsAndHasGoodExtensionShouldReturnTrue() {
-        when(urlConfigurationProperties.getTypes())
+        when(validationConfigurationProperties.getTypes())
                 .thenReturn(List.of("pdf"));
 
         boolean result = urlValidator.validateUrl("https://example.com/something.pdf");
@@ -74,7 +74,7 @@ class UrlValidatorTest {
 
     @Test
     void validatingGoodURLThatHasGoodExtensionShouldReturnTrue() {
-        when(urlConfigurationProperties.getTypes())
+        when(validationConfigurationProperties.getTypes())
                 .thenReturn(List.of("pdf"));
 
         boolean result = urlValidator.validateUrl("http://example.com/something.pdf");

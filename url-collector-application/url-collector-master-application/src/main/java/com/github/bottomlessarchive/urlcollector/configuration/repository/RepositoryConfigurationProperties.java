@@ -8,7 +8,7 @@ import org.springframework.boot.context.properties.ConstructorBinding;
 @Getter
 @ConstructorBinding
 @RequiredArgsConstructor
-@ConfigurationProperties("urls.database")
+@ConfigurationProperties("database")
 public class RepositoryConfigurationProperties {
 
     private final String host;

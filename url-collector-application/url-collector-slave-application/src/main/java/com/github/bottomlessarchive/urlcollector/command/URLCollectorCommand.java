@@ -2,7 +2,7 @@ package com.github.bottomlessarchive.urlcollector.command;
 
 import com.github.bottomlessarchive.urlcollector.task.service.WorkUnitProcessor;
 import com.github.bottomlessarchive.urlcollector.uploader.service.UrlBatchWarehouse;
-import com.github.bottomlessarchive.urlcollector.validator.service.UrlValidator;
+import com.github.bottomlessarchive.urlcollector.validator.service.URLValidator;
 import com.github.bottomlessarchive.urlcollector.workunit.service.WorkUnitClient;
 import com.github.bottomlessarchive.urlcollector.workunit.service.domain.WorkUnit;
 import lombok.RequiredArgsConstructor;
@@ -20,10 +20,10 @@ import java.util.stream.Collectors;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class UrlCollectorCommand implements CommandLineRunner {
+public class URLCollectorCommand implements CommandLineRunner {
 
     private final WorkUnitClient workUnitClient;
-    private final UrlValidator urlValidator;
+    private final URLValidator urlValidator;
     private final UrlBatchWarehouse urlBatchWarehouse;
     private final WorkUnitProcessor workUnitProcessor;
     private final Semaphore commandRateLimitingSemaphore;
