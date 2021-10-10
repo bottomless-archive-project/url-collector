@@ -97,16 +97,18 @@ java -jar url-collector-slave-application-{release-number}.jar --example.paramet
 
 #### Parameters
 
-| Name                         | Description |
-| ---------------------------- | ----------- |
-| execution.parallelism-target | Title       |
-| warehouse.aws.region         | Text        |
-| warehouse.aws.bucket-name    | Text        |
-| warehouse.aws.access-key     | Text        |
-| warehouse.aws.secret-key     | Text        |
-| validation.types             | Text        |
-| master.host                  | Text        |
-| master.port                  | Text        |
+| Name                             | Description |
+| -------------------------------- | ----------- |
+| execution.parallelism-target     | Title       |
+| warehouse.type                   | Text        |
+| warehouse.local.target-directory | Text        |
+| warehouse.aws.region             | Text        |
+| warehouse.aws.bucket-name        | Text        |
+| warehouse.aws.access-key         | Text        |
+| warehouse.aws.secret-key         | Text        |
+| validation.types                 | Text        |
+| master.host                      | Text        |
+| master.port                      | Text        |
 
 ### Starting a crawl
 
@@ -147,13 +149,15 @@ java -jar url-collector-merger-application-{release-number}.jar --example.parame
 
 #### Parameters
 
-| Name            | Description |
-| --------------- | ----------- |
-| database.host   | Title       |
-| database.port   | Text        |
-| database.uri    | Text        |
-| aws.region      | Text        |
-| aws.bucket-name | Text        |
-| aws.access-key  | Text        |
-| aws.secret-key  | Text        |
-| result.path     | Text        |
+| Name                             | Description |
+| -------------------------------- | ----------- |
+| database.host                    | Title       |
+| database.port                    | Text        |
+| database.uri                     | Text        |
+| warehouse.type                   | Text        |
+| warehouse.local.target-directory | Text        |
+| warehouse.aws.region             | Text        |
+| warehouse.aws.bucket-name        | Text        |
+| warehouse.aws.access-key         | Text        |
+| warehouse.aws.secret-key         | Text        |
+| result.path                      | Text        |
