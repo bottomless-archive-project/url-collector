@@ -1,7 +1,7 @@
 # URL Collector
 
 The URL collector is an application that crawls the [Common Crawl](https://commoncrawl.org/the-data/get-started/) corpus
-for urls with the specified file types.
+for URLs with the specified file extensions.
 
 ## Architecture
 
