@@ -1,4 +1,4 @@
-package com.github.bottomlessarchive.urlcollector.configuration.amazon;
+package com.github.bottomlessarchive.urlcollector.uploader.service.amazon.configuration;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
@@ -6,22 +6,22 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.github.bottomlessarchive.urlcollector.serializer.service.UrlBatchSerializer;
-import com.github.bottomlessarchive.urlcollector.uploader.service.UrlBatchWarehouse;
-import com.github.bottomlessarchive.urlcollector.uploader.service.amazon.AmazonUrlBatchWarehouse;
+import com.github.bottomlessarchive.urlcollector.uploader.service.URLBatchWarehouse;
+import com.github.bottomlessarchive.urlcollector.uploader.service.amazon.AmazonURLBatchWarehouse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @RequiredArgsConstructor
-public class AmazonUrlBatchWarehouseConfiguration {
+public class AmazonURLBatchWarehouseConfiguration {
 
     private final AmazonConfigurationProperties awsS3ConfigurationProperties;
 
     @Bean
-    public UrlBatchWarehouse uploaderBatchUploader(final AmazonS3 amazonS3,
+    public URLBatchWarehouse uploaderBatchUploader(final AmazonS3 amazonS3,
                                                    final UrlBatchSerializer urlBatchSerializer) {
-        return new AmazonUrlBatchWarehouse(awsS3ConfigurationProperties.getBucketName(), amazonS3, urlBatchSerializer);
+        return new AmazonURLBatchWarehouse(awsS3ConfigurationProperties.getBucketName(), amazonS3, urlBatchSerializer);
     }
 
     @Bean

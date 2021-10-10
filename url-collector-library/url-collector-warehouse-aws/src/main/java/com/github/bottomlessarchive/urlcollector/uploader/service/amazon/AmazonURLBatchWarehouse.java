@@ -3,7 +3,7 @@ package com.github.bottomlessarchive.urlcollector.uploader.service.amazon;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.github.bottomlessarchive.urlcollector.serializer.service.UrlBatchSerializer;
-import com.github.bottomlessarchive.urlcollector.uploader.service.UrlBatchWarehouse;
+import com.github.bottomlessarchive.urlcollector.uploader.service.URLBatchWarehouse;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayInputStream;
@@ -12,13 +12,13 @@ import java.util.Set;
 import java.util.UUID;
 
 @Slf4j
-public class AmazonUrlBatchWarehouse implements UrlBatchWarehouse {
+public class AmazonURLBatchWarehouse implements URLBatchWarehouse {
 
     private final String bucketName;
     private final AmazonS3 amazonS3;
     private final UrlBatchSerializer urlBatchSerializer;
 
-    public AmazonUrlBatchWarehouse(final String bucketName, final AmazonS3 amazonS3,
+    public AmazonURLBatchWarehouse(final String bucketName, final AmazonS3 amazonS3,
                                    final UrlBatchSerializer urlBatchSerializer) {
         this.bucketName = bucketName;
         this.amazonS3 = amazonS3;
@@ -26,17 +26,17 @@ public class AmazonUrlBatchWarehouse implements UrlBatchWarehouse {
     }
 
     @Override
-    public void uploadUrls(final UUID batchId, final Set<String> result) {
+    public void saveUrls(final UUID batchId, final Set<String> result) {
         writeFile("crawled-data/dataset-" + batchId + ".ubds", urlBatchSerializer.serializeUrls(result));
     }
 
     @Override
-    public Set<String> downloadUrls(final UUID batchId) {
+    public Set<String> loadUrls(final UUID batchId) {
         return urlBatchSerializer.deserializeUrls(readFile("crawled-data/dataset-" + batchId + ".ubds"));
     }
 
     private void writeFile(final String fileName, final byte[] fileData) {
-        log.debug("Initializing file upload to an AWS based file repository! Target filename: " + fileName
+        log.debug("Initializing file upload to an AWS based file warehouse! Target filename: " + fileName
                 + " file size: " + fileData.length + " target bucket: " + bucketName + ".");
 
         try {
@@ -47,7 +47,7 @@ public class AmazonUrlBatchWarehouse implements UrlBatchWarehouse {
 
             amazonS3.putObject(bucketName, fileName, new ByteArrayInputStream(fileData), objectMetadata);
         } catch (Exception e) {
-            log.error("Failed to upload payload to AWS based file repository! Target filename: " + fileName
+            log.error("Failed to upload payload to AWS based file warehouse! Target filename: " + fileName
                     + " file size: " + fileData.length + " target bucket: " + bucketName + "!");
 
             throw e;
@@ -55,16 +55,16 @@ public class AmazonUrlBatchWarehouse implements UrlBatchWarehouse {
     }
 
     private byte[] readFile(final String fileName) {
-        log.debug("Initializing file download from an AWS based file repository! Target filename: " + fileName
+        log.debug("Initializing file download from an AWS based file warehouse! Target filename: " + fileName
                 + " target bucket: " + bucketName + ".");
 
         try {
             return amazonS3.getObject(bucketName, fileName).getObjectContent().readAllBytes();
         } catch (IOException e) {
-            log.error("Failed to read payload from AWS based file repository! Target filename: " + fileName
+            log.error("Failed to read payload from AWS based file warehouse! Target filename: " + fileName
                     + " target bucket: " + bucketName + "!");
 
-            throw new RuntimeException("Failed to read payload from AWS based file repository!", e);
+            throw new RuntimeException("Failed to read payload from AWS based file warehouse!", e);
         }
     }
 }

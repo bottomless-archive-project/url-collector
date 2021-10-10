@@ -2,6 +2,8 @@ rootProject.name = 'url-collector'
 
 include 'url-collector-library'
 include 'url-collector-library:url-collector-parser-service'
+include 'url-collector-library:url-collector-warehouse-aws'
+include 'url-collector-library:url-collector-warehouse-local'
 include 'url-collector-library:url-collector-warehouse-service'
 include 'url-collector-library:url-collector-serializer-service'
 include 'url-collector-library:url-collector-work-unit-repository'

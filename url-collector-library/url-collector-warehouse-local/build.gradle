@@ -1,0 +1,4 @@
+dependencies {
+    implementation project(':url-collector-library:url-collector-warehouse-service')
+    implementation project(':url-collector-library:url-collector-serializer-service')
+}

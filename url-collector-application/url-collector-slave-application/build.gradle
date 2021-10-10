@@ -3,8 +3,7 @@ apply plugin: 'org.springframework.boot'
 dependencies {
     implementation project(':url-collector-library:url-collector-parser-service')
     implementation project(':url-collector-library:url-collector-work-unit-view')
-    implementation project(':url-collector-library:url-collector-warehouse-service')
+    implementation project(':url-collector-library:url-collector-warehouse-aws')
+    implementation project(':url-collector-library:url-collector-warehouse-local')
     implementation project(':url-collector-library:url-collector-serializer-service')
-
-    implementation group: 'com.amazonaws', name: 'aws-java-sdk-s3', version: '1.12.68'
 }

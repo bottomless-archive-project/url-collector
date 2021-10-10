@@ -1,7 +1,7 @@
 package com.github.bottomlessarchive.urlcollector.command;
 
 import com.github.bottomlessarchive.urlcollector.task.service.WorkUnitProcessor;
-import com.github.bottomlessarchive.urlcollector.uploader.service.UrlBatchWarehouse;
+import com.github.bottomlessarchive.urlcollector.uploader.service.URLBatchWarehouse;
 import com.github.bottomlessarchive.urlcollector.validator.service.URLValidator;
 import com.github.bottomlessarchive.urlcollector.workunit.service.WorkUnitClient;
 import com.github.bottomlessarchive.urlcollector.workunit.service.domain.WorkUnit;
@@ -24,7 +24,7 @@ public class URLCollectorCommand implements CommandLineRunner {
 
     private final WorkUnitClient workUnitClient;
     private final URLValidator urlValidator;
-    private final UrlBatchWarehouse urlBatchWarehouse;
+    private final URLBatchWarehouse urlBatchWarehouse;
     private final WorkUnitProcessor workUnitProcessor;
     private final Semaphore commandRateLimitingSemaphore;
     private final ExecutorService commandExecutorService;
@@ -57,7 +57,7 @@ public class URLCollectorCommand implements CommandLineRunner {
 
                 log.info("Starting uploading for task: {}.", workUnit.getId());
 
-                urlBatchWarehouse.uploadUrls(workUnit.getId(), resultUrls);
+                urlBatchWarehouse.saveUrls(workUnit.getId(), resultUrls);
 
                 log.info("Finished uploading for task: {}, reporting as finished.", workUnit.getId());
 

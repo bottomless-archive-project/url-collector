@@ -100,10 +100,10 @@ java -jar url-collector-slave-application-{release-number}.jar --example.paramet
 | Name                         | Description |
 | ---------------------------- | ----------- |
 | execution.parallelism-target | Title       |
-| aws.region                   | Text        |
-| aws.bucket-name              | Text        |
-| aws.access-key               | Text        |
-| aws.secret-key               | Text        |
+| warehouse.aws.region         | Text        |
+| warehouse.aws.bucket-name    | Text        |
+| warehouse.aws.access-key     | Text        |
+| warehouse.aws.secret-key     | Text        |
 | validation.types             | Text        |
 | master.host                  | Text        |
 | master.port                  | Text        |

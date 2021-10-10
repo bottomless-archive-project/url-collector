@@ -1,7 +1,7 @@
 package com.github.bottomlessarchive.urlcollector.command;
 
 import com.github.bottomlessarchive.urlcollector.configuration.path.PathConfigurationProperties;
-import com.github.bottomlessarchive.urlcollector.uploader.service.UrlBatchWarehouse;
+import com.github.bottomlessarchive.urlcollector.uploader.service.URLBatchWarehouse;
 import com.github.bottomlessarchive.urlcollector.workunit.service.WorkUnitFactory;
 import com.github.bottomlessarchive.urlcollector.workunit.service.domain.WorkUnit;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ import java.util.Set;
 public class URLMergerCommand implements CommandLineRunner {
 
     private final WorkUnitFactory workUnitFactory;
-    private final UrlBatchWarehouse urlBatchWarehouse;
+    private final URLBatchWarehouse urlBatchWarehouse;
     private final PathConfigurationProperties pathConfigurationProperties;
 
     @Override
@@ -35,7 +35,7 @@ public class URLMergerCommand implements CommandLineRunner {
         for (WorkUnit workUnit : workUnits) {
             iterationCount++;
 
-            final Set<String> urls = urlBatchWarehouse.downloadUrls(workUnit.getId());
+            final Set<String> urls = urlBatchWarehouse.loadUrls(workUnit.getId());
 
             log.info("Adding {} urls as the {} iteration in batch: {} to the result set. Items already in the set: {}.",
                     urls.size(), iterationCount, workUnit.getId(), uniqueUrls.size());
