@@ -43,7 +43,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 15+36-1562, mixed mode, sharing)
 
 ### Installing MongoDB
 
-Download MongoDB 5.0 from https://www.mongodb.com/download-center/community[here]. After the download is complete run
+Download MongoDB 5.0 from [here](https://www.mongodb.com/download-center/community). After the download is complete run
 the installer and follow the directions it provides. If it's possible, install the MongoDB Compass tool as well because
 you might need it later for administrative tasks.
 
