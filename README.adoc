@@ -175,6 +175,8 @@ java -jar url-collector-merger-application-{release-number}.jar --example.parame
 
 .Parameters
 |===
+| Parameter | Description
+
 | database.host
 | Title
 
