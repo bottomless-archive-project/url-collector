@@ -76,7 +76,7 @@ java -jar url-collector-master-application-{release-number}.jar --example.parame
 | If present and not empty, it overrides the host and port parameter. Let the user inject a https://docs.mongodb.com/manual/reference/connection-string/[MongoDB Connection String] directly. Should be used to define the credentials and other custom connection parameters. *(Default value: "")*
 
 | server.port
-| The port where the master server should listen on.
+| The port where the master server should listen on. *(Default value: 8080)*
 |===
 
 === Running the Slave Application
@@ -106,34 +106,34 @@ java -jar url-collector-slave-application-{release-number}.jar --example.paramet
 | Parameter | Description
 
 | execution.parallelism-target
-| Title
+| How many work units should be processed at the same time. *(Default value: the number of processor cores multiplied by two)*
 
 | warehouse.type
-| Text
+| The type of the warehouse. Can be either 'local' or 'aws'.
 
 | warehouse.local.target-directory
-| Text
+| The target directory where the crawled URLs should be saved. Only used if the _warehouse.type_ is _'local'_.
 
 | warehouse.aws.region
-| Text
+| The https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingBucket.html[region] of the S3 bucket where the crawled URLs should be uploaded. Only used if the _warehouse.type_ is _'aws'_.
 
 | warehouse.aws.bucket-name
-| Text
+| The https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingBucket.html[name] of the S3 bucket where the crawled URLs should be uploaded. Only used if the _warehouse.type_ is _'aws'_.
 
 | warehouse.aws.access-key
-| Text
+| The https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html[access key] for the user that has access to the S3 bucket where the crawled URLs should be uploaded. Only used if the _warehouse.type_ is _'aws'_.
 
 | warehouse.aws.secret-key
-| Text
+| The https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html[secret key] for the user that has access to the S3 bucket where the crawled URLs should be uploaded. Only used if the _warehouse.type_ is _'aws'_.
 
 | validation.types
-| Text
+| The list of file executions that we need to save the URLs for.
 
 | master.host
-| Text
+| The host location of the Master Application. *(Default value: localhost)*
 
 | master.port
-| Text
+| The port location of the Master Application. *(Default value: 8080)*
 |===
 
 === Starting a crawl
@@ -178,32 +178,32 @@ java -jar url-collector-merger-application-{release-number}.jar --example.parame
 | Parameter | Description
 
 | database.host
-| Title
+| The host location of the MongoDB database server. *(Default value: localhost)*
 
 | database.port
-| Text
+| The port open for the MongoDB database server. *(Default value: 27017)*
 
 | database.uri
-| Text
+| If present and not empty, it overrides the host and port parameter. Let the user inject a https://docs.mongodb.com/manual/reference/connection-string/[MongoDB Connection String] directly. Should be used to define the credentials and other custom connection parameters. *(Default value: "")*
 
 | warehouse.type
-| Text
+| The type of the warehouse. Can be either 'local' or 'aws'.
 
 | warehouse.local.target-directory
-| Text
+| The target directory where the crawled URLs should be saved. Only used if the _warehouse.type_ is _'local'_.
 
 | warehouse.aws.region
-| Text
+| The https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingBucket.html[region] of the S3 bucket where the crawled URLs should be uploaded. Only used if the _warehouse.type_ is _'aws'_.
 
 | warehouse.aws.bucket-name
-| Text
+| The https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingBucket.html[name] of the S3 bucket where the crawled URLs should be uploaded. Only used if the _warehouse.type_ is _'aws'_.
 
 | warehouse.aws.access-key
-| Text
+| The https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html[access key] for the user that has access to the S3 bucket where the crawled URLs should be uploaded. Only used if the _warehouse.type_ is _'aws'_.
 
 | warehouse.aws.secret-key
-| Text
+| The https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html[secret key] for the user that has access to the S3 bucket where the crawled URLs should be uploaded. Only used if the _warehouse.type_ is _'aws'_.
 
 | result.path
-| Text
+| The location where the result of the merge should be saved at. It should be a directory. The result file will be saved there with the filename of 'result.ubds'.
 |===

@@ -6,7 +6,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Data
 @ConfigurationProperties("warehouse.aws")
-@ConditionalOnProperty(name = "warehouse.type", havingValue = "aws")
 public class AmazonConfigurationProperties {
 
     private String region;

@@ -1,9 +1,6 @@
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 buildscript {
-    ext {
-        springBootVersion = '2.5.4'
-    }
     repositories {
         mavenCentral()
         maven {
@@ -11,7 +8,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.5.4")
     }
 }
 

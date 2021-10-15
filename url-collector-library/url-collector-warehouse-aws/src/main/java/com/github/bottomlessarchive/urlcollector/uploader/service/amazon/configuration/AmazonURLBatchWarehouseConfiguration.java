@@ -9,11 +9,13 @@ import com.github.bottomlessarchive.urlcollector.serializer.service.UrlBatchSeri
 import com.github.bottomlessarchive.urlcollector.uploader.service.URLBatchWarehouse;
 import com.github.bottomlessarchive.urlcollector.uploader.service.amazon.AmazonURLBatchWarehouse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @RequiredArgsConstructor
+@ConditionalOnProperty(name = "warehouse.type", havingValue = "aws")
 public class AmazonURLBatchWarehouseConfiguration {
 
     private final AmazonConfigurationProperties awsS3ConfigurationProperties;
