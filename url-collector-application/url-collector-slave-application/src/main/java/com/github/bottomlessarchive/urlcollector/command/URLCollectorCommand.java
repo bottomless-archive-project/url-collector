@@ -55,11 +55,11 @@ public class URLCollectorCommand implements CommandLineRunner {
                         .filter(urlValidator::validateUrl)
                         .collect(Collectors.toSet());
 
-                log.info("Starting uploading for task: {}.", workUnit.getId());
+                log.info("Starting saving the results of work unit: {}.", workUnit.getId());
 
                 urlBatchWarehouse.saveUrls(workUnit.getId(), resultUrls);
 
-                log.info("Finished uploading for task: {}, reporting as finished.", workUnit.getId());
+                log.info("Finished saving the results of work unit: {}, reporting as finished.", workUnit.getId());
 
                 workUnitClient.finishWorkUnit(workUnit);
 
