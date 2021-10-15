@@ -207,3 +207,9 @@ java -jar url-collector-merger-application-{release-number}.jar --example.parame
 | result.path
 | The location where the result of the merge should be saved at. It should be a directory. The result file will be saved there with the filename of 'result.ubds'.
 |===
+
+== Peeking into the results
+
+The individual result files are LZMA encoded. If you want to peek into them, then first you should decompress the files (https://www.7-zip.org/[7-Zip] can help you with this on Windows). The URLs will sit in a JSON array.
+
+The merged result file is NOT compressed. In it, the URLs are separated by newline characters.
